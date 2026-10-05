@@ -1,0 +1,284 @@
+/* =========================================================
+   Smart Design | styles.css
+   Se carga después de Bootstrap para sobrescribir sus estilos.
+   Paleta tomada del logo: azul, azul marino y gris claro.
+   ========================================================= */
+
+:root {
+  --sd-blue: #0057e7;
+  --sd-blue-dark: #0044b8;
+  --sd-navy: #12233a;
+  --sd-paper: #ededec;      /* mismo gris del fondo del logo */
+  --sd-white: #ffffff;
+  --sd-mist: #dce6f7;
+  --sd-line: #c9d3e3;
+
+  --font-display: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --aside-width: 300px;
+}
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--sd-navy);
+  background-color: var(--sd-paper);
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, .brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+p { max-width: 68ch; }
+
+a { color: var(--sd-blue); }
+a:hover { color: var(--sd-blue-dark); }
+
+:focus-visible {
+  outline: 3px solid var(--sd-blue);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0.5rem;
+  background: var(--sd-navy);
+  color: var(--sd-white);
+  padding: 0.5rem 1rem;
+  z-index: 2000;
+}
+.skip-link:focus { left: 0.5rem; color: var(--sd-white); }
+
+/* ---------- Botones ---------- */
+.btn-sd {
+  --bs-btn-color: var(--sd-white);
+  --bs-btn-bg: var(--sd-blue);
+  --bs-btn-border-color: var(--sd-blue);
+  --bs-btn-hover-color: var(--sd-white);
+  --bs-btn-hover-bg: var(--sd-blue-dark);
+  --bs-btn-hover-border-color: var(--sd-blue-dark);
+  --bs-btn-active-bg: var(--sd-navy);
+  --bs-btn-active-border-color: var(--sd-navy);
+  font-weight: 500;
+  border-radius: 0.5rem;
+}
+
+.btn-outline-sd {
+  --bs-btn-color: var(--sd-navy);
+  --bs-btn-border-color: var(--sd-navy);
+  --bs-btn-hover-color: var(--sd-white);
+  --bs-btn-hover-bg: var(--sd-navy);
+  --bs-btn-hover-border-color: var(--sd-navy);
+  --bs-btn-active-bg: var(--sd-navy);
+  font-weight: 500;
+  border-radius: 0.5rem;
+}
+
+/* ---------- Header / nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background-color: var(--sd-paper);
+  border-bottom: 1px solid var(--sd-line);
+}
+
+.brand-name { font-size: 1.35rem; color: var(--sd-navy); }
+
+.navbar .nav-link {
+  color: var(--sd-navy);
+  font-weight: 500;
+  padding: 0.5rem 0.85rem;
+}
+.navbar .nav-link:hover { color: var(--sd-blue); }
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 3rem 0 2rem;
+  background-color: var(--sd-paper);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.hero .lead { margin-bottom: 1.75rem; }
+
+/* multiply funde el fondo gris del PNG con el fondo de la página */
+.hero-logo {
+  mix-blend-mode: multiply;
+  max-height: 480px;
+  width: auto;
+  margin-inline: auto;
+  display: block;
+}
+
+/* ---------- Layout con ASIDE float: right ---------- */
+.layout { padding-top: 2rem; padding-bottom: 3rem; }
+
+/* Clearfix: contiene el float dentro de .layout */
+.clearfix::after { content: ""; display: block; clear: both; }
+
+/* Móvil primero: el aside ocupa todo el ancho y va arriba, sin float */
+.aside-float {
+  float: none;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Desde 992px: float a la derecha, como pide la tarea */
+@media (min-width: 992px) {
+  .aside-float {
+    float: right;
+    width: var(--aside-width);
+    margin: 0 0 1.5rem 2.5rem;
+  }
+
+  /* overflow: hidden crea un contexto de formato propio (BFC):
+     el contenido queda junto al aside en vez de rodearlo */
+  .content-area { overflow: hidden; }
+}
+
+.aside-box {
+  background: var(--sd-white);
+  border: 1px solid var(--sd-line);
+  border-top: 5px solid var(--sd-blue);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.pedido-lista li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--sd-mist);
+  font-size: 0.95rem;
+}
+
+.pedido-totales div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.15rem 0;
+}
+.pedido-totales dt { font-weight: 400; }
+.pedido-totales dd { margin: 0; font-variant-numeric: tabular-nums; }
+.pedido-totales .total {
+  border-top: 2px solid var(--sd-navy);
+  margin-top: 0.4rem;
+  padding-top: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+.pedido-totales .total dt { font-weight: 600; }
+
+/* ---------- Secciones de contenido ---------- */
+.bloque {
+  padding: 1.75rem 0 2.25rem;
+  border-top: 1px solid var(--sd-line);
+}
+.bloque:first-child { border-top: 0; padding-top: 0; }
+
+.bloque h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin-bottom: 1rem;
+}
+
+/* ---------- Tarjetas de paquetes ---------- */
+.paquete {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--sd-white);
+  border: 1px solid var(--sd-line);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+.paquete h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+.paquete p { font-size: 0.95rem; flex-grow: 1; }
+
+.paquete .precio {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--sd-blue);
+}
+
+.paquete.destacado {
+  border-color: var(--sd-blue);
+  box-shadow: inset 0 0 0 1px var(--sd-blue);
+}
+
+.etiqueta {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--sd-mist);
+  color: var(--sd-navy);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- Proceso ---------- */
+.proceso {
+  max-width: 62ch;
+  padding-left: 1.4rem;
+}
+.proceso li { margin-bottom: 0.6rem; padding-left: 0.3rem; }
+.proceso li::marker {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--sd-blue);
+}
+
+/* ---------- Laboratorio JS ---------- */
+.salida-lab {
+  background: var(--sd-navy);
+  color: #e8eefb;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  min-height: 9rem;
+  max-height: 26rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* ---------- Formulario ---------- */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--sd-blue);
+  box-shadow: 0 0 0 0.2rem rgba(0, 87, 231, 0.2);
+}
+
+#resultadoForm.ok { color: #0a6b3a; font-weight: 500; }
+#resultadoForm.error { color: #a31d1d; font-weight: 500; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--sd-navy);
+  color: #d6def0;
+  padding: 2rem 0;
+}
+.site-footer strong { color: var(--sd-white); }
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}

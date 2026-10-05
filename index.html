@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  CARACTERÍSTICAS PRINCIPALES DE LA ESTRUCTURA HTML5 (rúbrica 6.1)
+  ============================================================
+  1. <!DOCTYPE html> + lang="es": declara HTML5 y el idioma (accesibilidad/SEO).
+  2. <meta charset> y <meta viewport>: codificación UTF-8 y diseño responsivo.
+  3. <header>: encabezado del sitio (marca + navegación principal).
+  4. <nav>: bloque de enlaces de navegación (aria-label para lectores de pantalla).
+  5. <main>: contenido principal único de la página.
+  6. <section>: agrupaciones temáticas (cada una con su <h2>).
+  7. <article>: unidad de contenido independiente (cada paquete de la tienda).
+  8. <aside>: contenido complementario (resumen de pedido). Usa float: right en CSS.
+  9. <footer>: pie de página con créditos y datos de contacto.
+  10. Otras etiquetas semánticas usadas: <figure>, <figcaption>, <address>, <time>, <label>.
+  11. Archivos enlazados: Bootstrap (CDN), styles.css y script.js (externos).
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Smart Design: tienda de diseño y desarrollo web. Landing pages y logos para negocios.">
+  <title>Smart Design | Landing pages y logos</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Bootstrap 5 (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- CSS propio (se carga después de Bootstrap para poder sobrescribirlo) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ENCABEZADO -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg" aria-label="Navegación principal">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+          <img src="images/smart-design-icon.png" alt="" width="38" height="40">
+          <span class="brand-name">Smart Design</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal" aria-controls="menuPrincipal"
+                aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tienda">Tienda</a></li>
+            <li class="nav-item"><a class="nav-link" href="#proceso">Proceso</a></li>
+            <li class="nav-item"><a class="nav-link" href="#laboratorio">Laboratorio JS</a></li>
+            <li class="nav-item"><a class="btn btn-sd ms-lg-2" href="#contacto">Pedir cotización</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- HERO -->
+    <section class="hero" id="inicio" aria-labelledby="titulo-hero">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <h1 id="titulo-hero">Landing pages y logos para que tu negocio se entienda a primera vista</h1>
+            <p class="lead">Diseñamos y programamos páginas rápidas, que se ven bien en el celular y en la computadora, con una identidad visual que tus clientes recuerdan.</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-sd btn-lg" href="#tienda">Ver paquetes</a>
+              <a class="btn btn-outline-sd btn-lg" href="#servicios">Qué hacemos</a>
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2">
+            <figure class="hero-figure mb-0">
+              <img src="images/smart-design-logo.png" class="img-fluid hero-logo"
+                   alt="Logo de Smart Design: dos formas hexagonales, una azul con píxeles y otra azul oscuro con una pluma de diseño"
+                   width="1254" height="1254">
+              <figcaption class="visually-hidden">Logo de Smart Design: landing pages y logos</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZONA DE CONTENIDO: aside (float right) + secciones -->
+    <div class="container layout clearfix">
+
+      <!-- ASIDE con float: right (ver .aside-float en styles.css) -->
+      <aside class="aside-float" aria-labelledby="titulo-pedido">
+        <div class="aside-box">
+          <h2 id="titulo-pedido" class="h5">Tu pedido</h2>
+          <ul id="listaPedido" class="pedido-lista list-unstyled mb-3" aria-live="polite">
+            <li class="text-muted">Todavía no agregaste paquetes.</li>
+          </ul>
+          <dl class="pedido-totales mb-3">
+            <div><dt>Subtotal</dt><dd id="subtotal">$0.00</dd></div>
+            <div><dt>Descuento</dt><dd id="descuento">$0.00</dd></div>
+            <div class="total"><dt>Total</dt><dd id="total">$0.00</dd></div>
+          </dl>
+          <p id="mensajeDescuento" class="small mb-3"></p>
+          <button id="btnVaciar" class="btn btn-outline-sd btn-sm w-100" type="button">Vaciar pedido</button>
+        </div>
+      </aside>
+
+      <div class="content-area">
+
+        <!-- SERVICIOS -->
+        <section id="servicios" class="bloque" aria-labelledby="titulo-servicios">
+          <h2 id="titulo-servicios">Qué hacemos</h2>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <h3 class="h5">Landing pages</h3>
+              <p>Una página enfocada en una sola acción: que te escriban, te llamen o compren. Construida con HTML, CSS y JavaScript, sin plantillas pesadas.</p>
+            </div>
+            <div class="col-md-6">
+              <h3 class="h5">Logos e identidad</h3>
+              <p>Un logo claro en cualquier tamaño, con paleta de colores y tipografías definidas para que todo lo que publiques se vea del mismo negocio.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- TIENDA -->
+        <section id="tienda" class="bloque" aria-labelledby="titulo-tienda">
+          <h2 id="titulo-tienda">Tienda de paquetes</h2>
+          <p>Elige un paquete y agrégalo a tu pedido. El descuento se calcula solo cuando el total lo permite.</p>
+          <div id="catalogo" class="row g-4">
+            <!-- Los paquetes se generan desde script.js con un bucle for -->
+            <p class="text-muted">Cargando paquetes…</p>
+          </div>
+        </section>
+
+        <!-- PROCESO (esta sí es una secuencia real) -->
+        <section id="proceso" class="bloque" aria-labelledby="titulo-proceso">
+          <h2 id="titulo-proceso">Cómo trabajamos</h2>
+          <ol class="proceso">
+            <li><strong>Conversamos.</strong> Nos cuentas qué vendes y a quién.</li>
+            <li><strong>Proponemos.</strong> Te enviamos un boceto del logo o de la página.</li>
+            <li><strong>Ajustamos.</strong> Incluimos dos rondas de cambios.</li>
+            <li><strong>Entregamos.</strong> Recibes los archivos finales y la página publicada.</li>
+          </ol>
+        </section>
+
+        <!-- LABORATORIO JS -->
+        <section id="laboratorio" class="bloque" aria-labelledby="titulo-lab">
+          <h2 id="titulo-lab">Laboratorio de JavaScript</h2>
+          <p>Esta sección muestra en pantalla lo mismo que verás en la consola del navegador (F12). Cambia el precio y pulsa el botón para probar la lógica.</p>
+
+          <div class="row g-3 align-items-end mb-3">
+            <div class="col-sm-5 col-md-4">
+              <label for="inputPrecio" class="form-label">Precio a clasificar (USD)</label>
+              <input id="inputPrecio" type="number" min="0" step="1" value="350" class="form-control">
+            </div>
+            <div class="col-sm-4 col-md-3">
+              <label for="inputRepeticiones" class="form-label">Repeticiones (bucles)</label>
+              <input id="inputRepeticiones" type="number" min="1" max="10" value="3" class="form-control">
+            </div>
+            <div class="col-sm-3 col-md-5">
+              <button id="btnProbar" class="btn btn-sd" type="button">Ejecutar pruebas</button>
+            </div>
+          </div>
+
+          <pre id="salidaLab" class="salida-lab" aria-live="polite" tabindex="0">Pulsa «Ejecutar pruebas» para ver los resultados.</pre>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto" class="bloque" aria-labelledby="titulo-contacto">
+          <h2 id="titulo-contacto">Pide tu cotización</h2>
+          <form id="formContacto" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input id="nombre" name="nombre" type="text" class="form-control" autocomplete="name" required>
+                <div class="invalid-feedback">Escribe tu nombre (mínimo 3 letras).</div>
+              </div>
+              <div class="col-md-6">
+                <label for="correo" class="form-label">Correo electrónico</label>
+                <input id="correo" name="correo" type="email" class="form-control" autocomplete="email" required>
+                <div class="invalid-feedback">Escribe un correo válido, por ejemplo nombre@dominio.com.</div>
+              </div>
+              <div class="col-12">
+                <label for="servicio" class="form-label">¿Qué necesitas?</label>
+                <select id="servicio" name="servicio" class="form-select" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="landing">Landing page</option>
+                  <option value="logo">Logo</option>
+                  <option value="ambos">Landing page y logo</option>
+                </select>
+                <div class="invalid-feedback">Selecciona qué necesitas.</div>
+              </div>
+              <div class="col-12">
+                <label for="mensaje" class="form-label">Cuéntanos de tu negocio</label>
+                <textarea id="mensaje" name="mensaje" rows="4" class="form-control"></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-sd" type="submit">Enviar solicitud</button>
+              </div>
+            </div>
+            <p id="resultadoForm" class="mt-3 mb-0" role="status"></p>
+          </form>
+        </section>
+
+      </div><!-- /content-area -->
+    </div><!-- /layout -->
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-6">
+          <p class="mb-1"><strong>Smart Design</strong> · Landing pages y logos</p>
+          <address class="mb-0 small">contacto@smartdesign.example</address>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="mb-0 small">© <time id="anio" datetime="2026">2026</time> Smart Design.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS (CDN) y JavaScript propio -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
